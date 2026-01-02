@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Breadcrumb({ sectionLabel, sectionTo, current }) {
   return (
-    <div className="bg-[#FCFCFC]">
+    <div className="bg-[#FCFCFC] hidden sm:block">
       <div className="flex items-center gap-2 max-w-7xl pl-[7.8rem] py-[19px] text-[#000000]">
         <img src={placeholder} className="w-[15px] h-[23px]" />
 

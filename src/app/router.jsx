@@ -16,6 +16,7 @@ import CategoryDetailsGuest from "../pages/Guest/CategoryDetailsGuest";
 import NotFound from "../pages/common/NotFound";
 import JobDetailsGuest from "../pages/Guest/JobDetailsGuest";
 import CategoriesGuest from "../pages/Guest/CategoriesGuest";
+import TagsDetailGuest from "../pages/Guest/TagsDetailGuest";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
         path: "tags",
         element: <AllTagsGuest />,
       },
+      { path: "/tags/:id", element: <TagsDetailGuest /> },
     ],
   },
   {

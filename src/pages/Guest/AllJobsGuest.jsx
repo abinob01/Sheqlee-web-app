@@ -75,7 +75,7 @@ export default function AllJobsGuest() {
         </div>
       ) : (
         <>
-          <section className=" px-[72px] py-[80px] ">
+          <section className="px-4 sm:px-8 md:px-[48px] lg:px-[72px] py-[80px]">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
               {JOBS.map((job) => (
                 <JobCard key={job.id} job={job} />

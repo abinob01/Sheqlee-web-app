@@ -5,18 +5,43 @@ import popularTagsDot from "../../assets/icons/popularTagsDot.svg";
 export default function TagCard({ id, name, jobs, subscribers }) {
   return (
     <Link to={`/tags/${id}`} className="block">
-      <div className="pl-[42px] pb-[24px] pt-[15px] bg-[#DFDFDF] bg-no-repeat bg-clip-padding bg-left-top rounded-[15px] border-l-[15px] border-black opacity-100 cursor-pointer">
-        {/* header */}
-        <h3 className="w-[133px] h-[31px] mb-[15px] text-left font-kantumruy font-medium text-[27px] text-[#000000] tracking-[0px] opacity-100">
+      <div
+        className="
+          pl-6 sm:pl-8 lg:pl-[42px]
+          pt-3 sm:pt-4 lg:pt-[15px]
+          pb-4 sm:pb-5 lg:pb-[24px]
+          bg-[#DFDFDF]
+          rounded-[12px] lg:rounded-[15px]
+          border-l-[8px] sm:border-l-[10px] lg:border-l-[15px]
+          border-black
+          cursor-pointer
+        "
+      >
+        <h3
+          className="
+            mb-2 sm:mb-3 lg:mb-[15px]
+            text-base sm:text-lg lg:text-[27px]
+            font-kantumruy font-medium
+            text-black
+          "
+        >
           {name}
         </h3>
 
-        <p className="flex items-center gap-[12px] h-[25px] text-left font-kantumruy font-normal text-[21px] text-[#000000] tracking-[0px] opacity-100">
+        <p
+          className="
+            flex items-center
+            gap-2 sm:gap-3
+            text-xs sm:text-sm lg:text-[21px]
+            font-kantumruy
+            text-black
+          "
+        >
           {jobs} jobs
           <img
             src={popularTagsDot}
-            alt="Dot Between Number of Jobs and Number of subscribers"
-            className="bg-transparent w-[5.4px] h-[5.4px] opacity-100"
+            alt=""
+            className="w-[4px] h-[4px] sm:w-[5px] sm:h-[5px]"
           />
           {subscribers} subscribers
         </p>
