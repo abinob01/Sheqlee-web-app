@@ -2,6 +2,8 @@ import TagCard from "../cards/TagCard";
 import popularTagsDetailIcon from "../../assets/icons/popularTagsDetailIcon.svg";
 import { Link } from "react-router-dom";
 import { TAGS } from "../../utils/tags.data";
+import React from "react";
+import { ShimmerButton } from "react-shimmer-effects";
 
 const PREVIEW_COUNT = 6;
 

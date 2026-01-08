@@ -7,8 +7,7 @@ import pricePerHourIcon from "../../assets/icons/latestJobCalendarIcon.svg";
 
 export default function JobCard({ job }) {
   return (
-    <Link
-      to={`/jobs/${job.id}`}
+    <div
       className="
         block bg-[#F7F7F7] rounded-[20px]
         p-4 sm:p-5 lg:p-[30px]
@@ -60,13 +59,14 @@ export default function JobCard({ job }) {
               </span>
             )
           )}
-
-          <button className="bg-[#8967B3] text-white px-3 py-1 rounded text-xs lg:text-[12px] font-kantumruy font-medium">
-            Apply
-          </button>
+          <Link to={`/jobs/${job.id}`}>
+            <button className="bg-[#8967B3] text-white px-3 py-1 rounded text-xs lg:text-[12px] font-kantumruy font-medium">
+              Apply
+            </button>
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

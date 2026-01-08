@@ -22,9 +22,7 @@ export default function HomeGuest() {
 
       <DeveloperCTA />
 
-      <div className="container mx-auto px-4">
-        <PlatformStats />
-      </div>
+      <PlatformStats />
     </>
   );
 }

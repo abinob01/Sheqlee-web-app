@@ -87,11 +87,7 @@ export default function AllJobsGuest() {
         </>
       )}
       <DeveloperCTA />
-      {showNoResults || (
-        <div className="container mx-auto px-4">
-          <PlatformStatus />
-        </div>
-      )}
+      {showNoResults || <PlatformStatus />}
     </>
   );
 }

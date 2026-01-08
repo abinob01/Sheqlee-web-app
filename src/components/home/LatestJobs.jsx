@@ -25,7 +25,7 @@ export default function LatestJobs({ jobs }) {
 
           <img
             src={latestJobsDetaiIcon}
-            alt=""
+            alt="More latest jobs icon to show all the list jobs"
             className="w-[7px] h-[12px] lg:w-[9px] lg:h-[16px]"
           />
         </Link>
