@@ -141,62 +141,90 @@ import googleIcon from "../../assets/images/googleIcon.png";
 import metaIcon from "../../assets/images/metaIcon.png";
 import microsoftIcon from "../../assets/images/microsoftIcon.png";
 import appleIcon from "../../assets/images/appleIcon.png";
+import { useEffect, useState } from "react";
+
+import { formatWithCommas, formatCompact } from "../../utils/numberFormatters";
 import { Link } from "react-router-dom";
 
-function StatCard({ value, title, description, reverse = false }) {
+function StatCard({
+  value,
+  title,
+  description,
+  reverse = false,
+  offset = false,
+}) {
   return (
     <div
       className={`
-        flex ${reverse ? "flex-row-reverse" : "flex-row"}
-        items-stretch gap-3 sm:gap-6
-        bg-white rounded-xl
-        p-3 xs:p-4 sm:p-6
+        ${offset ? "lg:ml-[270px] " : "lg:mr-[270px]"}
       `}
     >
-      {/* BLACK STAT BOX */}
       <div
         className={`
-          bg-black text-white
-          w-[60px] xs:w-[70px] sm:w-[90px] lg:w-[110px]
-          flex items-center justify-center
-          text-[14px] xs:text-[16px] sm:text-[18px] lg:text-[22px]
-          font-bold
-          self-stretch
-          ${reverse ? "rounded-r-lg" : "rounded-l-lg"}
+          flex ${reverse ? "flex-row-reverse " : "flex-row"}
+          items-stretch gap-3 sm:gap-6
+          bg-[#F7F7F7] rounded-xl
+          
         `}
       >
-        {value}
-      </div>
+        {/* BLACK STAT BOX */}
+        <div
+          className={`
+            bg-black text-white
+            w-[60px] xs:w-[70px] sm:w-[90px] lg:w-[270px]
+            flex items-center justify-center
+            text-[14px] xs:text-[16px] sm:text-[18px] lg:text-[50px]
+            font-bold
+            h-auto
+            ${reverse ? "rounded-r-[15px] " : "rounded-l-[15px]"}
+          `}
+        >
+          {value}
+        </div>
 
-      {/* TEXT */}
-      <div className="flex flex-col justify-center text-left">
-        <h3 className="font-kantumruy font-semibold text-[13px] xs:text-[14px] sm:text-[16px] lg:text-[18px] mb-1">
-          {title}
-        </h3>
-        <p className="text-[11px] xs:text-[12px] sm:text-[13px] lg:text-[14px] opacity-80 max-w-sm">
-          {description}
-        </p>
+        {/* TEXT */}
+        <div
+          className={`
+    flex flex-col justify-center text-[#000000]  xs:p-4 sm:p-6
+    ${reverse ? "text-right items-end" : "text-left items-start"}
+  `}
+        >
+          <h3 className="font-kantumruy font-medium text-[16px] lg:text-[34px] lg:mb-[19px]">
+            {title}
+          </h3>
+          <p className="text-[11px] sm:text-[15px] lg:text-[17px] opacity-80 lg:max-w-[510px]">
+            {description}
+          </p>
+        </div>
       </div>
     </div>
   );
 }
 
 export default function ClientsGuest() {
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    fetch("http://your-api.com/stats") // replace with your real API
+      .then((res) => res.json())
+      .then((data) => setStats(data))
+      .catch(console.error);
+  }, []);
+
+  if (!stats) return null;
   return (
     <>
       {/* ================= BREADCRUMB ================= */}
       <div className="hidden sm:block">
         <Breadcrumb
-          sectionLabel="Clients"
-          sectionTo="/clients"
-          current="Clients"
+          items={[{ label: "Sheqlee", to: "/" }, { label: "Clients" }]}
         />
       </div>
 
       {/* ================= HEADER ================= */}
       <section className="text-center py-8 xs:py-10 sm:py-[60px] px-4">
         {/* Desktop / Tablet title */}
-        <h1 className="hidden sm:block text-[32px] lg:text-[36px] font-kantumruy font-semibold mb-3">
+        <h1 className="hidden sm:block text-[32px] lg:text-[48px] font-kantumruy font-semibold mb-3">
           Sheqlee for Clients
         </h1>
 
@@ -205,22 +233,22 @@ export default function ClientsGuest() {
           Qagnew for Clients
         </h1>
 
-        <p className="max-w-xl mx-auto text-[13px] xs:text-[14px] sm:text-[15px] lg:text-[16px] opacity-80 mb-5">
+        <p className="max-w-2xl mx-auto text-[16px] xs:text-[19px] sm:text-[23px] md:text-[27px] leading-[33px] opacity-80 mb-[70px]">
           Access a pool of talented, competent and dedicated experts and
           professionals from Ethiopia.
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 px-[42px] md:px-0">
           <Button
             variant="outline"
-            className="border-[2px] border-[#8967B3] !text-black px-5 py-2 rounded-lg w-full sm:w-auto text-[13px]"
+            className="border-[2px] md:border-[4px] border-[#8967B3] !text-black px-5 py-2 rounded-lg w-full sm:w-auto text-[13px] sm:text-[25px] sm:px-6 sm:py-3 font-medium"
           >
             Log in
           </Button>
 
           <Link to="/company-signup">
-            <Button className="bg-[#8967B3] text-white px-5 py-2 rounded-lg w-full sm:w-auto text-[13px]">
+            <Button className="bg-[#8967B3] text-[#FFFFFF] px-3 xl:px-[29px] sm:px-[24px] py-2 sm:py-[20px] rounded-lg w-full sm:w-auto text-[13px] sm:text-[23px] xl:text-[25px] font-medium tracking-normal">
               Register as an employer
             </Button>
           </Link>
@@ -228,31 +256,46 @@ export default function ClientsGuest() {
       </section>
 
       {/* ================= STATS ================= */}
-      <section className="max-w-3xl mx-auto px-4 space-y-3 xs:space-y-4 sm:space-y-6">
+      <section className="max-w-5xl lg:max-w-7xl mx-auto px-4 space-y-3 xs:space-y-4 sm:space-y-6">
         <StatCard
           value="1.5M+"
           title="Unique alerts delivered"
-          description="We have been delivering notifications about new remote jobs to job seekers since the website launched."
+          description="We have been delivered 3,916,718 notifications about new remote jobs to job seekers since the website launched. (Launched: 1 YEAR AGO)"
+        />
+
+        {/* <StatCard
+        value={formatCompact(stats.notifications)}
+        title="Unique alerts delivered"
+        description={`We have delivered ${formatWithCommas(stats.notifications)} notifications about new remote jobs to job seekers since the website launched. (Launched: 1 YEAR AGO)`}
+      /> */}
+
+        <StatCard
+          reverse
+          offset
+          value="49.7K+"
+          title="Telegram Channel Subscribers"
+          description="We have a telegram channel with 49,716+ real subscribers. Our channel posts have 29.5K views per day on average."
+        />
+
+        {/* <StatCard
+        reverse
+        value={formatCompact(stats.subscribers)}
+        title="Telegram Channel Subscribers"
+        description={`We have a telegram channel with ${formatWithCommas(stats.subscribers)} real subscribers. Our channel posts have ${formatCompact(stats.dailyViews)} views per day on average.`}
+      /> */}
+
+        <StatCard
+          value="1.5M+"
+          title="Unique alerts delivered"
+          description="We have been delivered 3,916,718 notifications about new remote jobs to job seekers since the website launched. (Launched: 1 YEAR AGO)"
         />
 
         <StatCard
           reverse
+          offset
           value="49.7K+"
           title="Telegram Channel Subscribers"
-          description="We have a Telegram channel with 49,700+ subscribers. Our channel posts new jobs every day."
-        />
-
-        <StatCard
-          value="1.5M+"
-          title="Unique alerts delivered"
-          description="We have been delivering notifications about new remote jobs to job seekers since the website launched."
-        />
-
-        <StatCard
-          reverse
-          value="49.7K+"
-          title="Telegram Channel Subscribers"
-          description="We have a Telegram channel with 49,700+ subscribers. Our channel posts new jobs every day."
+          description="We have a telegram channel with 49,716+ real subscribers. Our channel posts have 29.5K views per day on average."
         />
       </section>
 

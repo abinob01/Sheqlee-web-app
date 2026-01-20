@@ -247,6 +247,45 @@
 //   );
 // }
 
+/////////////////////////////////////////////////////////////////////////////////
+//  If Designer wanted it to be visible on mobile phones the information box
+//       <div className="sm:flex justify-center mb-10 px-2">
+//         <div className="flex items-stretch sm:items-stretch bg-[#F3F3F3] rounded-[11px] overflow-hidden max-w-3xl w-full">
+//           {/* ICON */}
+//           <div
+//             className="bg-black text-white
+//                         w-[75px] sm:w-[90px]
+//                         flex items-center justify-center
+//                         py-1 sm:py-0"
+//           >
+//             <img
+//               src={infoIcon}
+//               alt=""
+//               className="w-[22px] h-[22px] sm:w-[26px] sm:h-[30px]"
+//             />
+//           </div>
+
+//           {/* TEXT */}
+//           <p
+//             className="tracking-0 px-4 py-4 sm:py-[33px]
+//                       text-[15px] sm:text-[19px]
+//                       text-[#000000]
+//                       font-kantumruy
+//                       text-center sm:text-left"
+//           >
+//             If you are an employer, please visit{" "}
+//             <Link
+//               to="/company-signup"
+//               className="font-semibold border-b-4 border-[#8967B3] leading-none"
+//             >
+//               employers registration
+//             </Link>{" "}
+//             page.
+//           </p>
+//         </div>
+//       </div>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../../components/ui/Breadcrumb";
@@ -287,7 +326,7 @@ export default function CompanySignup() {
     if (!formValid) return;
 
     updateAccount({
-      fullName: "", // company signup does not collect full name
+      fullName: "",
       email,
       password,
       role: "company",
@@ -297,43 +336,6 @@ export default function CompanySignup() {
   const strength = passwordStrength();
 
   const formValid = emailValid && passwordsMatch && strength !== "weak";
-
-  //  If Designer wanted it to be visible on mobile phones the information box
-  //       <div className="sm:flex justify-center mb-10 px-2">
-  //         <div className="flex items-stretch sm:items-stretch bg-[#F3F3F3] rounded-[11px] overflow-hidden max-w-3xl w-full">
-  //           {/* ICON */}
-  //           <div
-  //             className="bg-black text-white
-  //                         w-[75px] sm:w-[90px]
-  //                         flex items-center justify-center
-  //                         py-1 sm:py-0"
-  //           >
-  //             <img
-  //               src={infoIcon}
-  //               alt=""
-  //               className="w-[22px] h-[22px] sm:w-[26px] sm:h-[30px]"
-  //             />
-  //           </div>
-
-  //           {/* TEXT */}
-  //           <p
-  //             className="tracking-0 px-4 py-4 sm:py-[33px]
-  //                       text-[15px] sm:text-[19px]
-  //                       text-[#000000]
-  //                       font-kantumruy
-  //                       text-center sm:text-left"
-  //           >
-  //             If you are an employer, please visit{" "}
-  //             <Link
-  //               to="/company-signup"
-  //               className="font-semibold border-b-4 border-[#8967B3] leading-none"
-  //             >
-  //               employers registration
-  //             </Link>{" "}
-  //             page.
-  //           </p>
-  //         </div>
-  //       </div>
 
   return (
     <>
@@ -580,3 +582,52 @@ export default function CompanySignup() {
     </>
   );
 }
+
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import api from "../../services/api";
+
+// export default function CompanySignup() {
+//   const navigate = useNavigate();
+//   const [error, setError] = useState("");
+
+//   // assume these already exist or come from state/props
+//   const [companyName, setCompanyName] = useState("");
+//   const [domain, setDomain] = useState("");
+//   const [fullName, setFullName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const formValid = true; // replace with your real validation
+//   const normalizedEmail = email.toLowerCase();
+
+//   const handleRegister = async (e) => {
+//     e.preventDefault();
+//     if (!formValid) return;
+
+//     const signupData = {
+//       companyName,
+//       domain,
+//       fullName,
+//       email: normalizedEmail,
+//       password,
+//       role: "company",
+//     };
+
+//     try {
+//       const response = await api.post("/auth/register-company", signupData);
+
+//       // Axios only enters here for 2xx responses
+//       updateAccount?.(response.data.user);
+//       navigate("/dashboard");
+//     } catch (err) {
+//       setError(err.response?.data?.message || "Connection to backend failed");
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleRegister}>
+//       {error && <p className="text-red-500">{error}</p>}
+//       <button type="submit">Register Company</button>
+//     </form>
+//   );
+// }

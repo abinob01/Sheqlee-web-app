@@ -12,18 +12,16 @@ export default function Button({
 }) {
   // Base classes that apply to all buttons
   const baseClasses =
-    "font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+    "font-medium rounded-[8px] md:rounded-[11px] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
   // Variant styles
   const variants = {
     primary: "text-white ",
-    secondary:
-      "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500",
-    outline: "border text-purple-600 hover:bg-purple-50 focus:ring-purple-500",
-    danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
-    success: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500",
-    ghost:
-      "bg-transparent text-purple-600 hover:bg-purple-50 focus:ring-purple-500",
+    secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
+    outline: "border text-purple-600 hover:bg-purple-50 ",
+    danger: "bg-red-600 text-white hover:bg-red-700 ",
+    success: "bg-green-600 text-white hover:bg-green-700 ",
+    ghost: "bg-transparent text-purple-600 hover:bg-purple-50 ",
   };
 
   // Size styles

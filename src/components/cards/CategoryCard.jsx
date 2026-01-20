@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export default function CategoryCard({ id, name, jobs, subscribers, icon }) {
+export default function CategoryCard({ name, jobs, subscribers, icon, slug }) {
   return (
-    <Link to={`/categories/${id}`} className="block">
+    <Link to={`/categories/${slug}`} className="block">
       <div className="flex items-stretch bg-[#F7F7F7] rounded-[15px] hover:shadow-sm transition overflow-hidden">
         {/* ICON */}
         <div className="w-[52px] xl:w-[96px] bg-black flex items-center justify-center">
@@ -16,11 +16,11 @@ export default function CategoryCard({ id, name, jobs, subscribers, icon }) {
 
         {/* TEXT */}
         <div className="p-[18px]">
-          <h3 className="text-[24px] font-kantumruy font-medium mb-2">
+          <h3 className="text-[15px] sm:text-[23px] font-kantumruy font-medium mb-2">
             {name}
           </h3>
 
-          <p className="text-[14px] opacity-70">
+          <p className="text-[11px] sm:text-[16px] opacity-70">
             {jobs} jobs • {subscribers} subscribers
           </p>
         </div>

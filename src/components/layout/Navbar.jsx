@@ -387,10 +387,10 @@ export default function Navbar() {
   const isFreelancer = user?.role === "professional";
 
   const navLinkStyles = ({ isActive }) =>
-    `flex items-center h-full transition-colors duration-200 border-b-[8px] ${
+    `flex items-center h-full transition-colors duration-200 border-b-[8px] text-[18px] font-kantmruy font-medium tracking-normal ${
       isActive
-        ? "border-[#8967B3] text-black"
-        : "border-transparent text-gray-700 hover:text-[#8967B3]"
+        ? "border-[#8967B3] text-black "
+        : "border-transparent text-black hover:text-gray"
     }`;
 
   useEffect(() => {
@@ -416,19 +416,19 @@ export default function Navbar() {
           className="fixed inset-0 bg-black/30 backdrop-blur-[2px] z-40"
         />
       )}
-      <header className="w-full bg-[#f7f7f7] relative ">
+      <header className="max-w-full bg-[#f7f7f7] relative ">
         <nav
           className="
             flex items-center justify-between
-            h-[56px] sm:h-[64px] md:h-[170px]
+            h-[90px] sm:h-[90px] md:h-[136px]
             px-2 xs:px-3 sm:px-6 md:px-10
           "
         >
           {/* LEFT SIDE */}
-          <div className="flex items-center gap-2 sm:gap-6 shrink-0 relative z-40">
+          <div className="flex items-center gap-2  sm:gap-1 md:gap-1 shrink-0 relative z-40">
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden text-xl xs:text-2xl"
+              className="lg:hidden text-3xl xs:text-5xl ml-2"
               aria-label="Open menu"
             >
               ☰
@@ -438,10 +438,10 @@ export default function Navbar() {
               <img
                 src={navbarIcon}
                 alt="Sheqlee"
-                className="max-w-[26px] xs:max-w-[30px] md:max-w-[57px]"
+                className="max-w-[36px] xs:max-w-[40px] md:max-w-[56px] md:ml-[2.3rem] md:max-h-[57px] "
               />
 
-              <span className="hidden md:block font-recoleta font-bold text-[35px]">
+              <span className="hidden lg:block font-recoleta font-bold text-[31px] md:ml-[1.1rem] tracking-[-0.05rem]">
                 Sheqlee
               </span>
             </Link>
@@ -453,7 +453,7 @@ export default function Navbar() {
                   absolute top-[48px] left-0
                   w-[180px] bg-white
                   rounded-[6px] shadow-lg
-                  py-3 md:hidden
+                  py-3 lg:hidden
                 "
               >
                 <NavLink
@@ -509,7 +509,7 @@ export default function Navbar() {
           <div className="flex items-center h-full gap-2 sm:gap-4 md:gap-10">
             <div
               className="
-                hidden md:flex
+                hidden lg:flex
                 items-center h-full
                 gap-4 lg:gap-10
                 font-kantumruy
@@ -559,19 +559,23 @@ export default function Navbar() {
 
             <div className="relative">
               {!user ? (
-                <div className="flex items-center gap-1 xs:gap-2 sm:gap-3">
+                <div className="flex items-center gap-1 xs:gap-2 sm:gap-5">
                   <NavLink to="/login">
                     {({ isActive }) => (
                       <Button
                         variant="outline"
                         className={`
               border-0 sm:border-[2px] md:border-[3px]
-              sm:border-[#8967B3]
-              text-[11px] xs:text-[12px] sm:text-sm md:text-base
-              px-2 xs:px-3 sm:px-5
-              h-[55px]
-              rounded-[8px] sm:rounded-[10px] md:rounded-[15px]
-              ${isActive ? "bg-black text-white" : "bg-transparent"}
+              sm:border-[#8967B3] !text-black  font-semibold font-kantumruy
+              text-[11px] xs:text-[12px] sm:text-[18px] 
+              px-2 xs:px-3 sm:px-6 sm:py-3 
+              
+              rounded-[8px] sm:rounded-[10px] md:rounded-[12px]
+              ${
+                isActive
+                  ? "bg-black !text-white border-none sm:py-4 sm:px-7"
+                  : "bg-transparent"
+              }
             `}
                       >
                         Log in
@@ -580,7 +584,11 @@ export default function Navbar() {
                   </NavLink>
 
                   <Link to="/professional-signup">
-                    <Button className="bg-[#8967B3] text-white px-5 h-[55px] rounded-[10px]">
+                    <Button
+                      className="bg-[#8967B3] text-white px-5 rounded-[12px] font-semibold font-kantumruy
+              text-[11px] xs:text-[12px] sm:text-[18px] 
+               xs:px-3 sm:px-6 sm:py-4"
+                    >
                       Sign up
                     </Button>
                   </Link>
@@ -606,7 +614,7 @@ export default function Navbar() {
                     )}
 
                     {/* NAME */}
-                    <span className="hidden md:block font-medium">
+                    <span className="hidden lg:block font-medium">
                       {user.role === "company" ? user.companyName : user.name}
                     </span>
 
@@ -679,228 +687,3 @@ export default function Navbar() {
     </>
   );
 }
-// import { useState, useRef, useEffect } from "react";
-// import { Link, NavLink, useNavigate } from "react-router-dom";
-
-// import Button from "../ui/Button";
-
-// import navbarIcon from "../../assets/icons/navbarIcon.svg";
-// import navCategoriesIcon from "../../assets/icons/navCategoriesIcon.svg";
-
-// import userIcon from "../../assets/icons/userIcon.svg";
-// import dashboardIcon from "../../assets/icons/dashboardIcon.svg";
-// import companyIcon from "../../assets/images/company.png";
-// import settingsIcon from "../../assets/icons/settingsIcon.svg";
-// import logoutIcon from "../../assets/icons/logoutIcon.svg";
-
-// export default function Navbar() {
-//   const navigate = useNavigate();
-
-//   const [user, setUser] = useState(null);
-//   const [dropdownOpen, setDropdownOpen] = useState(false);
-//   const [mobileOpen, setMobileOpen] = useState(false);
-
-//   const menuRef = useRef(null);
-
-//   const isCompany = user?.role === "company";
-//   const isFreelancer = user?.role === "professional";
-
-//   useEffect(() => {
-//     const savedUser = JSON.parse(localStorage.getItem("authUser"));
-//     setUser(savedUser);
-//   }, []);
-
-//   const handleLogout = () => {
-//     localStorage.removeItem("authUser");
-//     setUser(null);
-//     setDropdownOpen(false);
-//     navigate("/");
-//   };
-
-//   const navLinkStyles = ({ isActive }) =>
-//     `flex items-center h-full transition-colors duration-200 border-b-[8px] ${
-//       isActive
-//         ? "border-[#8967B3] text-black"
-//         : "border-transparent text-gray-700 hover:text-[#8967B3]"
-//     }`;
-
-//   return (
-//     <>
-//       {/* BLUR OVERLAY (everything except dropdowns) */}
-//       {dropdownOpen && (
-//         <div
-//           onClick={() => setDropdownOpen(false)}
-//           className="fixed inset-0 bg-black/30 backdrop-blur-[3px] z-40"
-//         />
-//       )}
-
-//       <header className="w-full bg-[#f7f7f7] relative z-30">
-//         <nav className="flex items-center justify-between h-[64px] md:h-[170px] px-4 md:px-10">
-//           {/* LEFT */}
-//           <div className="flex items-center gap-4 relative z-50">
-//             <button
-//               onClick={() => setMobileOpen((v) => !v)}
-//               className="md:hidden text-2xl"
-//             >
-//               ☰
-//             </button>
-
-//             <Link to="/" className="flex items-center gap-2">
-//               <img src={navbarIcon} className="w-8 md:w-14" />
-//               <span className="hidden md:block font-recoleta text-3xl font-bold">
-//                 Sheqlee
-//               </span>
-//             </Link>
-
-//             {/* MOBILE MENU */}
-//             {mobileOpen && (
-//               <div
-//                 ref={menuRef}
-//                 className="absolute top-12 left-0 bg-white rounded-lg shadow-lg w-48 py-3 z-50 md:hidden"
-//               >
-//                 <NavLink to="/jobs" className="block px-4 py-2">
-//                   All jobs
-//                 </NavLink>
-//                 <NavLink to="/categories" className="block px-4 py-2">
-//                   Categories
-//                 </NavLink>
-//                 <NavLink to="/clients" className="block px-4 py-2">
-//                   Clients
-//                 </NavLink>
-//               </div>
-//             )}
-//           </div>
-
-//           {/* CENTER LINKS (DESKTOP) */}
-//           <div className="hidden md:flex gap-10 font-medium text-lg">
-//             <NavLink to="/jobs" className={navLinkStyles}>
-//               All jobs
-//             </NavLink>
-
-//             <NavLink to="/categories" className={navLinkStyles}>
-//               <span className="flex items-center gap-2">
-//                 Categories <img src={navCategoriesIcon} className="w-3" />
-//               </span>
-//             </NavLink>
-
-//             {!user && (
-//               <NavLink to="/clients" className={navLinkStyles}>
-//                 Clients
-//               </NavLink>
-//             )}
-
-//             {isCompany && (
-//               <Link to="/post-job">
-//                 <Button className="bg-[#8967B3] text-white px-6 h-10 rounded-lg">
-//                   Post a job
-//                 </Button>
-//               </Link>
-//             )}
-//           </div>
-
-//           {/* RIGHT */}
-//           <div className="relative z-50">
-//             {!user ? (
-//               <div className="flex gap-3">
-//                 <NavLink to="/login">
-//                   <Button variant="outline">Log in</Button>
-//                 </NavLink>
-//                 <Link to="/professional-signup">
-//                   <Button className="bg-[#8967B3] text-white">Sign up</Button>
-//                 </Link>
-//               </div>
-//             ) : (
-//               <>
-//                 {/* USER BUTTON */}
-//                 <button
-//                   onClick={() => setDropdownOpen((v) => !v)}
-//                   className="flex items-center gap-2 px-3 py-2"
-//                 >
-//                   <img src={userIcon} className="w-6 h-6" />
-//                   <span className="hidden md:block font-medium">
-//                     {user.name || "Profile"}
-//                   </span>
-//                   <img src={navCategoriesIcon} className="w-3 h-3" />
-//                   </button>
-
-//                   <button
-//   onClick={() => setDropdownOpen((v) => !v)}
-//   className="flex items-center gap-2 px-3 py-2 rounded-b-lg"
-// >
-//   {/* COMPANY ICON (company only) */}
-//   {user.role === "company" && (
-//     <img
-//       src={userIcon}
-//       className="w-6 h-6 cursor-pointer"
-//       onClick={(e) => {
-//         e.stopPropagation();
-//         navigate("/company-profile");
-//       }}
-//     />
-//   )}
-
-//   {/* NAME */}
-//   <span className="hidden md:block font-medium">
-//     {user.role === "company"
-//       ? user.companyName
-//       : user.name}
-//   </span>
-
-//   {/* MOBILE NAME */}
-//   <span className="block md:hidden font-medium">
-//     {user.role === "company"
-//       ? Sheqlee Co., Ltd.
-//       : user.name}
-//   </span>
-
-//   {/* DROPDOWN ARROW */}
-//   <img src={navCategoriesIcon} className="w-3 h-3" />
-// </button>
-
-//                 {/* DROPDOWN */}
-//                 {dropdownOpen && (
-//                   <div className="absolute right-0 top-12 w-56 bg-white rounded-lg shadow-xl z-50">
-//                     <Link
-//                       to={isCompany ? "/dashboard" : "/dashboard_freelancer"}
-//                       className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100"
-//                     >
-//                       <img src={dashboardIcon} className="w-4 h-4" />
-//                       Dashboard
-//                     </Link>
-
-//                     {user.role === "company" && (
-//                       <Link
-//                         to="/company-profile"
-//                         className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100"
-//                       >
-//                         <img src={companyIcon} className="w-4 h-4" />
-//                         Company profile
-//                       </Link>
-//                     )}
-
-//                     <Link
-
-//                         to={user.role === "company" ? "/account-settings" : "/freelancer-account-setting"}
-//                       className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100"
-//                     >
-//                       <img src={settingsIcon} className="w-4 h-4" />
-//                       Account settings
-//                     </Link>
-
-//                     <button
-//                       onClick={handleLogout}
-//                       className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-gray-100"
-//                     >
-//                       <img src={logoutIcon} className="w-4 h-4" />
-//                       Logout
-//                     </button>
-//                   </div>
-//                 )}
-//               </>
-//             )}
-//           </div>
-//         </nav>
-//       </header>
-//     </>
-//   );
-// }

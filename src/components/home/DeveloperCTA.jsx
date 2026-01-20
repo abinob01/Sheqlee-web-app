@@ -24,6 +24,7 @@
 
 import Button from "../ui/Button";
 import partyCTAIcon from "../../assets/images/partyCTAIcon.png";
+import { Link } from "react-router-dom";
 
 const DeveloperCTA = () => {
   return (
@@ -40,15 +41,18 @@ const DeveloperCTA = () => {
       >
         <img
           src={partyCTAIcon}
-          alt=""
-          className="w-[40px] h-[40px] md:w-[49px] md:h-[49px]"
+          alt="party Emoji"
+          className="w-[40px] h-[40px] md:w-[55px] md:h-[55px]"
         />
 
-        <p className="text-sm sm:text-base md:text-lg font-medium">
+        <p className="text-[17px] sm:text-[20px] md:text-[23px] lg:text-[26px] tracking-normal font-kantumruy font-medium sm:leading-7 ">
           Are you a software developer in Ethiopia?
         </p>
-
-        <Button className="bg-[#8967B3] mt-2 md:mt-0">Sign up</Button>
+        <Link to="/professional-signup">
+          <Button className="bg-[#8967B3] mt-2 px:3 py:3 md:mt-0 lg:text-[27px] text-white lg:font-kantumruy font-medium tracking-normal sm:px-[23px] sm:py-[11px] lg:py-5 lg:px-5">
+            Sign up
+          </Button>
+        </Link>
       </div>
     </section>
   );
